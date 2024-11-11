@@ -19,7 +19,6 @@ export class Purchase {
             try {
                 const input = await Console.readLineAsync("구매하실 상품명과 수량을 입력해 주세요. (예: [사이다-2],[감자칩-1])\n");
                 this.processPurchase(input);
-                // console.log(this.#purchases[0].name.toString() + this.#purchases[0].quantity.toString())
                 return;
             } catch (error) {
                 Console.print(error.message);  // 오류 메시지 출력
@@ -79,7 +78,10 @@ export class Purchase {
             throw new Error(Purchase.ERROR_QUANTITY_EXCEEDED);
         }
     }
-
+    
+    getPurchases() {
+        return this.#purchases;
+    }
 }
 
 export default Purchase;
