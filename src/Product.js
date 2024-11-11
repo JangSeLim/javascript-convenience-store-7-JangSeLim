@@ -29,7 +29,7 @@ export class Product {
     }
     
     setQuantity(quantity) {
-        this.#quantity = quantity;
+        this.#quantity -= quantity;
     }
 
     toString() {

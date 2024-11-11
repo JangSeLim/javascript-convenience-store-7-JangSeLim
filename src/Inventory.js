@@ -41,6 +41,17 @@ export class Inventory {
     getProductByName(name) {
         return this.#products.filter(product => product.getName() === name);
     }
+
+    // 재고 업데이트
+    updateProducts(name, promotionQuantity, regularQuantity) {
+        for (var index = 0; index < this.#products.length; index++) {
+            if (this.#products[index].getName() === name && this.#products[index].getPromo()) {
+                this.#products[index].setQuantity(promotionQuantity);
+            } else if (this.#products[index].getName() === name) {
+                this.#products[index].setQuantity(regularQuantity);
+            }
+        }
+    }
 }
 
 export default Inventory;
