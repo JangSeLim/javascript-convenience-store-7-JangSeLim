@@ -7,12 +7,12 @@
 
 ---
 
-## 기능 목록
+## 기능 요구사항
 
 ### 1. 상품 목록 출력
 1. 환영 인사 출력
 2. 상품명, 가격, 프로모션 이름, 재고를 출력
-   - `products.md`에서 쉼표를 기준으로 `- {상품명} 가{격}원 {수량}개 {프로모션}` 형식으로 출력
+   - `products.md`에서 쉼표를 기준으로 `- {상품명} {가격}원 {수량}개 {프로모션}` 형식으로 출력
    - 수량이 null인 경우 `재고 없음`으로 출력
         ```
         안녕하세요. W편의점입니다.
@@ -128,3 +128,24 @@
   ```
   감사합니다. 구매하고 싶은 다른 상품이 있나요? (Y/N)
   ```
+
+---
+
+## 기능 목록 및 구현
+
+### Product class
+- constructor: private
+- getter, setter
+  - setter는 quantity만: 수량만 수정하기 때문
+- tostring: 한줄씩 상품 출력 및 포멧팅
+  - quantity가 0인 경우, `재고 없음`
+  - promotion이 null인 경우, 출력 내용 없음
+
+### Inventory class
+- products 초기화
+- products.md 파일 읽기: loadAndDisplay()
+  - 첫째줄 헤더, 둘째줄부터 읽어야 함
+  - `,`를 기준으로 split
+  - `price`와 `quantity`는 숫자로, `promotion`은 null과 그외로 구분
+- displayProducts()로 편의점 안내문구와 함께 한줄씩 출력
+- 
