@@ -14,6 +14,22 @@ export class Purchase {
         this.#purchases = [];
     }
 
+    processPurchase(input) {
+        this.#purchases = [];
+        this.parseInput(input);
+    }
+
+    parseInput(input) {
+        if (!(input.startsWith('[') && input.endsWith(']'))) {
+            throw new Error(Purchase.ERROR_INVALID_FORMAT);
+        }
+
+        const items = input.split('],[');
+        items[0] = items[0].replace(/^\[/, '');
+        items[items.length - 1] = items[items.length - 1].replace(/\]$/, '');
+        this.validateInput(items);
+    }
+
     validateInput(items) {
         items.forEach(item => {
             const [productName, quantity] = item.split('-');
@@ -50,6 +66,7 @@ export class Purchase {
             throw new Error(Purchase.ERROR_QUANTITY_EXCEEDED);
         }
     }
+
 }
 
 export default Purchase;
