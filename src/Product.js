@@ -31,6 +31,18 @@ export class Product {
     setQuantity(quantity) {
         this.#quantity = quantity;
     }
+
+    toString() {
+        const formattedPrice = this.#price.toLocaleString();
+        
+        if (this.#quantity === 0) {
+            return `- ${this.#name} ${formattedPrice}원 재고 없음`;
+        } else if (this.#promotion) {
+            return `- ${this.#name} ${formattedPrice}원 ${this.#quantity}개 ${this.#promotion}`;
+        } else {
+            return `- ${this.#name} ${formattedPrice}원 ${this.#quantity}개`;
+        }
+    }
 }
 
 export default Product;
