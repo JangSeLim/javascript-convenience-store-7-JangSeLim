@@ -10,7 +10,6 @@ export class Inventory {
     }
 
     loadAndDisplay(filePath) {
-
         const data = fs.readFileSync(filePath, 'utf-8');
         const lines = data.trim().split('\n');
 
@@ -25,6 +24,18 @@ export class Inventory {
             const product = new Product(name, parseInt(price), parseInt(quantity), promo);
             this.#products.push(product);
         });
+
+        this.displayProducts();
+    }
+
+    displayProducts() {
+        Console.print("안녕하세요. W편의점입니다.");
+        Console.print("현재 보유하고 있는 상품입니다.\n");
+
+        this.#products.forEach(product => {
+            Console.print(product.toString());
+        });
+        Console.print('')
     }
 }
 
