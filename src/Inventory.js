@@ -37,6 +37,10 @@ export class Inventory {
         });
         Console.print('')
     }
+
+    getProductByName(name) {
+        return this.#products.filter(product => product.getName() === name);
+    }
 }
 
 export default Inventory;
